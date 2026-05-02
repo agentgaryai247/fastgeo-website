@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing — FastGEO | Get Found by AI Search Tools</title>
+  <meta name="description" content="FastGEO pricing plans. From a one-off GEO audit to monthly optimization packages. Get your business cited by ChatGPT, Claude, and Perplexity.">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            indigo: { 950: '#1E1B4B', 900: '#312E81', 800: '#3730A3', 700: '#4338CA', 600: '#4F46E5' },
+            teal: { 400: '#2DD4BF', 500: '#14B8A6', 600: '#0D9488' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .gradient-hero { background: linear-gradient(135deg, #1E1B4B 0%, #312E81 40%, #0D9488 100%); }
+    .gradient-text { background: linear-gradient(135deg, #2DD4BF, #818CF8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .card-hover { transition: transform 0.2s, box-shadow 0.2s; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .popular-card { position: relative; background: linear-gradient(135deg, #5B21B6, #7C3AED, #6D28D9); padding: 4px; border-radius: 1.5rem; }
+    .popular-card-inner { background: white; border-radius: 1.25rem; padding: calc(1.75rem - 4px) 1.75rem 1.75rem 1.75rem; height: 100%; display: flex; flex-direction: column; }
+    .popular-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); z-index: 10; white-space: nowrap; }
+    /* Card alignment — keep titles, prices, and features on the same line across all 4 cards */
+    .pricing-grid { align-items: start; padding-top: 1.25rem; }
+    .pricing-card-title { min-height: 64px; display: flex; flex-direction: column; justify-content: flex-start; }
+    .pricing-card-price { min-height: 52px; display: flex; align-items: baseline; gap: 4px; }
+    .gradient-btn { background: linear-gradient(135deg, #4338CA, #0D9488); color: white; font-weight: 700; transition: opacity 0.2s, transform 0.2s; }
+    .gradient-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .price-color { color: #4338CA; }
+    .card-border-gradient { border-left: 4px solid; border-image: linear-gradient(to bottom, #4338CA, #0D9488) 1; }
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="font-sans text-slate-800 bg-white">
+
+  <!-- Nav -->
+  <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-slate-100 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <img src="favicon.png" alt="FastGEO" width="34" height="34" class="rounded-lg">
+        <span class="text-2xl font-extrabold tracking-tight"><span class="text-indigo-950">Fast</span><span class="text-teal-600">GEO</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="text-slate-600 hover:text-indigo-900 font-medium">Home</a>
+        <a href="services.html" class="text-slate-600 hover:text-indigo-900 font-medium">Services</a>
+        <a href="pricing.html" class="text-indigo-900 font-semibold">Pricing</a>
+        <a href="blog/index.html" class="text-slate-600 hover:text-indigo-900 font-medium">Blog</a>
+        <a href="contact.html" class="text-slate-600 hover:text-indigo-900 font-medium">Contact</a>
+      </div>
+      <a href="contact.html" class="hidden md:inline-block gradient-btn px-6 py-2.5 rounded-full">Get Started</a>
+      <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-2">
+      <a href="index.html" class="block py-2 text-slate-600 font-medium">Home</a>
+      <a href="services.html" class="block py-2 text-slate-600 font-medium">Services</a>
+      <a href="pricing.html" class="block py-2 text-indigo-900 font-semibold">Pricing</a>
+      <a href="blog/index.html" class="block py-2 text-slate-600 font-medium">Blog</a>
+      <a href="contact.html" class="block py-2 text-slate-600 font-medium">Contact</a>
+      <a href="contact.html" class="block gradient-btn text-center px-6 py-2.5 rounded-full">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="gradient-hero pt-32 pb-16 md:pt-40 md:pb-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Simple, Transparent Pricing</h1>
+      <p class="text-lg text-indigo-100 max-w-2xl mx-auto">
+        Every plan comes with a clear deliverable and measurable results. If ChatGPT doesn't mention you, you'll see exactly why and what we're doing to fix it.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pricing Cards -->
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 pricing-grid">
+
+        <!-- Tier 1: GEO Starter -->
+        <div class="bg-white rounded-2xl shadow-lg p-7 card-hover flex flex-col card-border-gradient">
+          <div class="mb-5 pricing-card-title">
+            <h3 class="text-xl font-bold text-indigo-950 mb-1">GEO Starter</h3>
+            <p class="text-slate-500 text-sm">Audit + your first press release</p>
+          </div>
+          <div class="mb-5 pricing-card-price">
+            <span class="text-4xl font-bold price-color">&pound;150</span>
+            <span class="text-slate-500 text-sm">one off</span>
+          </div>
+          <hr class="mb-5">
+          <ul class="space-y-3 mb-7 flex-grow text-sm">
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span>Live AI citation check across ChatGPT, Claude &amp; Perplexity</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span>AI crawler access check</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span>Content &amp; schema review</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span><strong>Starter press release</strong> published on 1 site</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span>Prioritised action plan PDF</span>
+            </li>
+          </ul>
+          <a href="#" class="block text-center gradient-btn px-5 py-3 rounded-full">
+            Get Started
+          </a>
+        </div>
+
+        <!-- Tier 2: GEO Kickstart (one off) -->
+        <div class="bg-white rounded-2xl shadow-lg p-7 card-hover flex flex-col card-border-gradient">
+          <div class="mb-5 pricing-card-title">
+            <h3 class="text-xl font-bold text-indigo-950 mb-1">GEO Kickstart</h3>
+            <p class="text-slate-500 text-sm">One off setup to get you visible</p>
+          </div>
+          <div class="mb-5 pricing-card-price">
+            <span class="text-4xl font-bold price-color">&pound;397</span>
+            <span class="text-slate-500 text-sm">one off</span>
+          </div>
+          <hr class="mb-5">
+          <ul class="space-y-3 mb-7 flex-grow text-sm">
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span><strong>Everything in GEO Starter</strong></span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span><strong>1 full authority press release</strong> across 100+ sites</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span>Content optimization for AI extraction</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span>Schema markup implemented</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span>robots.txt &amp; technical fixes done for you</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span>LinkedIn content strategy guide</span>
+            </li>
+          </ul>
+          <a href="#" class="block text-center gradient-btn px-5 py-3 rounded-full">
+            Get Started
+          </a>
+        </div>
+
+        <!-- Tier 3: Monthly GEO (Popular) -->
+        <div class="popular-card card-hover shadow-xl">
+          <div class="popular-badge bg-purple-700 text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg tracking-wide uppercase">
+            Most Popular
+          </div>
+          <div class="popular-card-inner">
+            <div class="mb-5 pricing-card-title">
+              <h3 class="text-xl font-bold text-indigo-950 mb-1">Monthly GEO</h3>
+              <p class="text-slate-500 text-sm">Ongoing optimization &amp; citation building</p>
+            </div>
+            <div class="mb-5 pricing-card-price">
+              <span class="text-4xl font-bold price-color">&pound;497</span>
+              <span class="text-slate-500 text-sm">/ month</span>
+            </div>
+            <hr class="mb-5">
+            <ul class="space-y-3 mb-7 flex-grow text-sm">
+              <li class="flex items-start gap-2.5">
+                <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span><strong>Everything in the Kickstart</strong></span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span><strong>2 full authority press releases</strong> every month</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span>Ongoing content optimization</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span>Monthly citation tracking report</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span>Schema &amp; technical updates</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span>LinkedIn strategy &amp; content support</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                <span>Cancel any time, no contract</span>
+              </li>
+            </ul>
+            <a href="#" class="block text-center gradient-btn px-5 py-3 rounded-full">
+              Get Started
+            </a>
+          </div>
+        </div>
+
+        <!-- Tier 4: Premium Buildout -->
+        <div class="bg-white rounded-2xl shadow-lg p-7 card-hover flex flex-col card-border-gradient">
+          <div class="mb-5 pricing-card-title">
+            <h3 class="text-xl font-bold text-indigo-950 mb-1">Premium Buildout</h3>
+            <p class="text-slate-500 text-sm">Complete GEO overhaul</p>
+          </div>
+          <div class="mb-5 pricing-card-price">
+            <span class="text-4xl font-bold price-color">&pound;997</span>
+            <span class="text-slate-500 text-sm">/ month</span>
+          </div>
+          <hr class="mb-5">
+          <ul class="space-y-3 mb-7 flex-grow text-sm">
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span><strong>Everything in Monthly GEO</strong></span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span>Full website restructure for AI</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span><strong>4 full authority press releases</strong> across 100+ sites</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span>Blog content for AI citation</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span>Directory listings &amp; backlinks</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-teal-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span>Complete technical implementation</span>
+            </li>
+          </ul>
+          <a href="#" class="block text-center gradient-btn px-5 py-3 rounded-full">
+            Contact Us
+          </a>
+        </div>
+
+      </div>
+
+      <p class="text-center text-slate-500 text-sm mt-8">All prices exclude VAT. No long term contracts on the monthly plan — cancel any time.</p>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <h2 class="text-3xl font-bold text-indigo-950 text-center mb-12">Compare Plans</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b-2 border-indigo-200">
+              <th class="text-left py-4 pr-4 text-slate-600 font-semibold">Feature</th>
+              <th class="text-center py-4 px-3 text-indigo-950 font-bold">Starter</th>
+              <th class="text-center py-4 px-3 text-indigo-950 font-bold">Kickstart</th>
+              <th class="text-center py-4 px-3 font-bold price-color">Monthly</th>
+              <th class="text-center py-4 px-3 text-indigo-950 font-bold">Premium</th>
+            </tr>
+          </thead>
+          <tbody class="text-sm">
+            <tr class="border-b border-slate-100">
+              <td class="py-3.5 pr-4 text-slate-700">Live AI citation check</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+            </tr>
+            <tr class="border-b border-slate-100 bg-slate-50">
+              <td class="py-3.5 pr-4 text-slate-700">Robots.txt &amp; crawler analysis</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+            </tr>
+            <tr class="border-b border-slate-100">
+              <td class="py-3.5 pr-4 text-slate-700">Content &amp; schema review</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+            </tr>
+            <tr class="border-b border-slate-100 bg-slate-50">
+              <td class="py-3.5 pr-4 text-slate-700">PDF action plan</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+            </tr>
+            <tr class="border-b border-slate-100">
+              <td class="py-3.5 pr-4 text-slate-700">Starter press release (1 site)</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+            </tr>
+            <tr class="border-b border-slate-100 bg-slate-50">
+              <td class="py-3.5 pr-4 text-slate-700">Full authority press releases (100+ sites)</td>
+              <td class="text-center py-3.5 px-3 text-slate-300">&mdash;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 font-semibold">1</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 font-semibold">2/mo</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 font-semibold">4</td>
+            </tr>
+            <tr class="border-b border-slate-100 bg-slate-50">
+              <td class="py-3.5 pr-4 text-slate-700">Content optimization</td>
+              <td class="text-center py-3.5 px-3 text-slate-300">&mdash;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+            </tr>
+            <tr class="border-b border-slate-100">
+              <td class="py-3.5 pr-4 text-slate-700">Schema markup done for you</td>
+              <td class="text-center py-3.5 px-3 text-slate-300">&mdash;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+            </tr>
+            <tr class="border-b border-slate-100 bg-slate-50">
+              <td class="py-3.5 pr-4 text-slate-700">LinkedIn strategy</td>
+              <td class="text-center py-3.5 px-3 text-slate-300">&mdash;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+            </tr>
+            <tr class="border-b border-slate-100">
+              <td class="py-3.5 pr-4 text-slate-700">Monthly citation tracking</td>
+              <td class="text-center py-3.5 px-3 text-slate-300">&mdash;</td>
+              <td class="text-center py-3.5 px-3 text-slate-300">&mdash;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+            </tr>
+            <tr class="border-b border-slate-100 bg-slate-50">
+              <td class="py-3.5 pr-4 text-slate-700">Full website restructure</td>
+              <td class="text-center py-3.5 px-3 text-slate-300">&mdash;</td>
+              <td class="text-center py-3.5 px-3 text-slate-300">&mdash;</td>
+              <td class="text-center py-3.5 px-3 text-slate-300">&mdash;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+            </tr>
+            <tr class="border-b border-slate-100">
+              <td class="py-3.5 pr-4 text-slate-700">Blog content for AI citation</td>
+              <td class="text-center py-3.5 px-3 text-slate-300">&mdash;</td>
+              <td class="text-center py-3.5 px-3 text-slate-300">&mdash;</td>
+              <td class="text-center py-3.5 px-3 text-slate-300">&mdash;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+            </tr>
+            <tr class="border-b border-slate-100 bg-slate-50">
+              <td class="py-3.5 pr-4 text-slate-700">Directory listings &amp; backlinks</td>
+              <td class="text-center py-3.5 px-3 text-slate-300">&mdash;</td>
+              <td class="text-center py-3.5 px-3 text-slate-300">&mdash;</td>
+              <td class="text-center py-3.5 px-3 text-slate-300">&mdash;</td>
+              <td class="text-center py-3.5 px-3 text-teal-500 text-lg">&#10003;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <h2 class="text-3xl font-bold text-indigo-950 text-center mb-12">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        <details class="bg-white rounded-xl shadow-sm p-6 group">
+          <summary class="font-semibold text-indigo-950 cursor-pointer list-none flex justify-between items-center">
+            What exactly is GEO?
+            <svg class="w-5 h-5 text-slate-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="mt-4 text-slate-600 leading-relaxed">Generative Engine Optimization is the practice of structuring your online presence so AI tools like ChatGPT, Claude, and Perplexity can find and cite your business. It's like SEO, but for AI search instead of Google.</p>
+        </details>
+        <details class="bg-white rounded-xl shadow-sm p-6 group">
+          <summary class="font-semibold text-indigo-950 cursor-pointer list-none flex justify-between items-center">
+            How is this different from SEO?
+            <svg class="w-5 h-5 text-slate-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="mt-4 text-slate-600 leading-relaxed">SEO optimises for Google's ranking algorithm. GEO optimises for how AI tools read, understand, and cite your content. Being number one on Google doesn't mean ChatGPT will mention you. They're completely different systems with different rules.</p>
+        </details>
+        <details class="bg-white rounded-xl shadow-sm p-6 group">
+          <summary class="font-semibold text-indigo-950 cursor-pointer list-none flex justify-between items-center">
+            How quickly will I see results?
+            <svg class="w-5 h-5 text-slate-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="mt-4 text-slate-600 leading-relaxed">Some changes (like unblocking AI crawlers) can take effect within days. Content and press release based improvements typically show results within 2 to 8 weeks as AI tools re-crawl and update their knowledge.</p>
+        </details>
+        <details class="bg-white rounded-xl shadow-sm p-6 group">
+          <summary class="font-semibold text-indigo-950 cursor-pointer list-none flex justify-between items-center">
+            How do I know it's working?
+            <svg class="w-5 h-5 text-slate-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="mt-4 text-slate-600 leading-relaxed">The simplest test: type a relevant query into ChatGPT and see if your business comes up. We also provide monthly citation tracking reports that show exactly where and how often AI tools mention you.</p>
+        </details>
+        <details class="bg-white rounded-xl shadow-sm p-6 group">
+          <summary class="font-semibold text-indigo-950 cursor-pointer list-none flex justify-between items-center">
+            What about press releases — how does that help with AI?
+            <svg class="w-5 h-5 text-slate-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="mt-4 text-slate-600 leading-relaxed">Press releases get published on news sites that AI tools actively crawl. A well structured press release puts your brand name, location, and services into multiple high authority sources that AI models draw from when generating answers. It's one of the most effective GEO tactics available right now.</p>
+        </details>
+        <details class="bg-white rounded-xl shadow-sm p-6 group">
+          <summary class="font-semibold text-indigo-950 cursor-pointer list-none flex justify-between items-center">
+            Is there a contract on the monthly plan?
+            <svg class="w-5 h-5 text-slate-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="mt-4 text-slate-600 leading-relaxed">No long term contract. You can cancel the monthly plan at any time. We recommend at least three months to see the full impact, but you're never locked in.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="gradient-hero py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Not Sure Which Plan Is Right?</h2>
+      <p class="text-lg text-indigo-100 mb-8">Start with the GEO Starter. We'll show you exactly where you stand, publish your first press release, and recommend the best path forward. No pressure, no hard sell.</p>
+      <a href="contact.html" class="inline-block gradient-btn px-8 py-4 rounded-full text-lg shadow-lg">
+        Get in Touch
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-indigo-950 text-indigo-200 py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <div class="flex items-center gap-2.5 mb-4">
+            <img src="favicon.png" alt="FastGEO" width="32" height="32" class="rounded-lg">
+            <span class="text-2xl font-extrabold tracking-tight"><span class="text-white">Fast</span><span class="text-teal-400">GEO</span></span>
+          </div>
+          <p class="text-sm leading-relaxed">The UK's first Generative Engine Optimization agency. We help businesses get found by AI search tools.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-4">Pages</h4>
+          <div class="space-y-2 text-sm">
+            <a href="index.html" class="block hover:text-teal-400 transition">Home</a>
+            <a href="services.html" class="block hover:text-teal-400 transition">Services</a>
+            <a href="pricing.html" class="block hover:text-teal-400 transition">Pricing</a>
+            <a href="blog/index.html" class="block hover:text-teal-400 transition">Blog</a>
+            <a href="contact.html" class="block hover:text-teal-400 transition">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-4">Contact</h4>
+          <div class="space-y-2 text-sm">
+            <p>dan@fastgeo.co.uk</p>
+            <p>fastgeo.co.uk</p>
+            <p>United Kingdom</p>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-indigo-800 mt-8 pt-8 text-sm text-center text-indigo-400">&copy; 2026 FastGEO. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="FastGEO mark">
+  <defs>
+    <linearGradient id="fg-grad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1E1B4B"/>
+      <stop offset=".55" stop-color="#4338CA"/>
+      <stop offset="1" stop-color="#0D9488"/>
+    </linearGradient>
+  </defs>
+  <!-- rounded gradient tile -->
+  <rect x="0" y="0" width="64" height="64" rx="14" ry="14" fill="url(#fg-grad)"/>
+  <!-- speed / motion lines (left) -->
+  <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-width="2.6" opacity=".85">
+    <line x1="9"  y1="22" x2="20" y2="22"/>
+    <line x1="6"  y1="32" x2="22" y2="32"/>
+    <line x1="11" y1="42" x2="20" y2="42"/>
+  </g>
+  <!-- 4-point sparkle (right) -->
+  <path d="M44 14 C 44 24, 46 26, 56 26 C 46 26, 44 28, 44 38 C 44 28, 42 26, 32 26 C 42 26, 44 24, 44 14 Z" fill="#FFFFFF"/>
+  <!-- small accent sparkle -->
+  <path d="M52 40 C 52 45, 53 46, 58 46 C 53 46, 52 47, 52 52 C 52 47, 51 46, 46 46 C 51 46, 52 45, 52 40 Z" fill="#FFFFFF" opacity=".75"/>
+</svg>
