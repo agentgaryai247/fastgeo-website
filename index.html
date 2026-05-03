@@ -223,18 +223,19 @@
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
       <div class="reveal">
-        <div class="text-4xl md:text-5xl font-extrabold text-teal-400 tabular-nums" data-count="500" data-suffix="%+">0%+</div>
-        <div class="text-indigo-200 text-sm mt-1">AI referral traffic growth year on year</div>
+        <div class="text-4xl md:text-5xl font-extrabold text-teal-400 tabular-nums" data-count="4" data-suffix=".4x">0x</div>
+        <div class="text-indigo-200 text-sm mt-1">Higher conversion from AI search vs Google organic</div>
       </div>
       <div class="reveal delay-1">
-        <div class="text-4xl md:text-5xl font-extrabold text-teal-400 tabular-nums" data-count="16" data-suffix="%">0%</div>
-        <div class="text-indigo-200 text-sm mt-1">ChatGPT referral conversion rate (vs 2% Google)</div>
+        <div class="text-4xl md:text-5xl font-extrabold text-teal-400 tabular-nums" data-count="68" data-suffix="%">0%</div>
+        <div class="text-indigo-200 text-sm mt-1">Of AI citations come from third party sources</div>
       </div>
       <div class="reveal delay-2">
-        <div class="text-4xl md:text-5xl font-extrabold text-teal-400 tabular-nums" data-count="10" data-suffix="x">0x</div>
-        <div class="text-indigo-200 text-sm mt-1">Higher conversion from AI traffic vs organic</div>
+        <div class="text-4xl md:text-5xl font-extrabold text-teal-400 tabular-nums" data-count="83" data-suffix="%">0%</div>
+        <div class="text-indigo-200 text-sm mt-1">Of AI citations come from outside Google's top 10</div>
       </div>
     </div>
+    <p class="text-center text-indigo-400 text-xs mt-6">Based on GEO industry research, 2025–2026</p>
   </div>
 </section>
 
@@ -295,8 +296,8 @@
       </div>
       <div class="relative reveal delay-2">
         <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-700 text-white rounded-full flex items-center justify-center text-xl font-bold mb-6 shadow-lg shadow-teal-200">3</div>
-        <h3 class="text-xl font-bold text-indigo-950 mb-3">You start getting cited</h3>
-        <p class="text-slate-600 leading-relaxed">AI tools start mentioning your business by name. We track it monthly and show you the results. Higher quality leads, higher conversion rates, zero ad spend.</p>
+        <h3 class="text-xl font-bold text-indigo-950 mb-3">AI tools start recognising you</h3>
+        <p class="text-slate-600 leading-relaxed">As AI tools re-crawl the web, they pick up your new presence and begin recommending your business. Perplexity can show results within days. ChatGPT and Claude follow as they update. We track it and show you the progress.</p>
       </div>
     </div>
   </div>
@@ -315,7 +316,7 @@
           Think of it like SEO was ten years ago. The businesses that moved first dominated Google for a decade. GEO is the same opportunity, right now, for AI search.
         </p>
         <p class="text-lg text-slate-600 leading-relaxed">
-          The difference? AI traffic converts at <strong class="text-indigo-900">8 to 10 times</strong> the rate of Google organic. These aren't browsers. They're buyers.
+          The difference? AI traffic converts at <strong class="text-indigo-900">4.4 times</strong> the rate of Google organic. These aren't browsers. They're buyers.
         </p>
       </div>
       <div class="reveal delay-1 bg-gradient-to-br from-indigo-950 to-indigo-900 rounded-2xl p-8 text-white shadow-2xl shadow-indigo-200">
@@ -449,8 +450,10 @@ const counterIO = new IntersectionObserver((entries) => {
     const tick = (now) => {
       const t = Math.min((now - start) / dur, 1);
       const eased = 1 - Math.pow(1 - t, 3);
-      el.textContent = Math.round(target * eased) + suffix;
+      const val = Math.round(target * eased);
+      el.textContent = val + suffix;
       if (t < 1) requestAnimationFrame(tick);
+      else el.textContent = target + suffix;
     };
     requestAnimationFrame(tick);
     counterIO.unobserve(el);
