@@ -19,7 +19,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    // Run 3 different query styles in parallel for a thorough check
+    // Run 3 different query styles in parallel using the Responses API with web search
     const queries = [
       `Can you recommend a good ${trade} in ${city}?`,
       `I'm looking for the best ${trade} in ${city}. Who would you suggest?`,
@@ -27,7 +27,7 @@ module.exports = async function handler(req, res) {
     ];
 
     const results = await Promise.all(queries.map(async (query) => {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      const response = await fetch('https://api.openai.com/v1/responses', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${OPENAI_API_KEY}`,
@@ -35,9 +35,8 @@ module.exports = async function handler(req, res) {
         },
         body: JSON.stringify({
           model: 'gpt-4o-mini',
-          messages: [{ role: 'user', content: query }],
-          temperature: 0.3,
-          max_tokens: 800
+          tools: [{ type: 'web_search' }],
+          input: query
         })
       });
 
@@ -47,11 +46,22 @@ module.exports = async function handler(req, res) {
       }
 
       const data = await response.json();
-      const answer = data.usage
-        ? { text: data.choices[0].message.content, tokens: data.usage.total_tokens }
-        : { text: data.choices[0].message.content, tokens: 0 };
 
-      return { query, ...answer };
+      // Extract the text output from the Responses API format
+      let text = '';
+      if (data.output) {
+        for (const item of data.output) {
+          if (item.type === 'message' && item.content) {
+            for (const block of item.content) {
+              if (block.type === 'output_text') {
+                text += block.text;
+              }
+            }
+          }
+        }
+      }
+
+      return { query, text };
     }));
 
     // Analyse results — check if the business name appears in any response
@@ -62,16 +72,12 @@ module.exports = async function handler(req, res) {
       return {
         query: r.query,
         response: r.text,
-        mentioned: found,
-        tokens: r.tokens
+        mentioned: found
       };
     });
 
     const mentionCount = mentions.filter(m => m.mentioned).length;
     const totalQueries = mentions.length;
-
-    // Extract competitor names mentioned (businesses that aren't the target)
-    const allResponses = mentions.map(m => m.response).join('\n');
 
     // Build the verdict
     let verdict, score, recommendation;
