@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Happens When Someone Asks AI to Recommend a Business Like Yours — FastGEO</title>
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <meta name="description" content="When someone asks ChatGPT or Perplexity for a recommendation, here's exactly what happens behind the scenes and why your business might not be showing up.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            indigo: { 950: '#1E1B4B', 900: '#312E81', 800: '#3730A3', 700: '#4338CA', 600: '#4F46E5' },
+            teal: { 400: '#2DD4BF', 500: '#14B8A6', 600: '#0D9488' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .gradient-hero { background: linear-gradient(135deg, #1E1B4B 0%, #312E81 40%, #0D9488 100%); }
+    .gradient-btn { background: linear-gradient(135deg, #4338CA, #0D9488); color: white; font-weight: 700; transition: opacity 0.2s, transform 0.2s; }
+    .gradient-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    html { scroll-behavior: smooth; }
+    .prose p { margin-bottom: 1.5rem; }
+    .prose h2 { margin-top: 2.5rem; margin-bottom: 1rem; }
+    .prose h3 { margin-top: 2rem; margin-bottom: 0.75rem; }
+  </style>
+</head>
+<body class="font-sans text-slate-800 bg-white">
+
+  <!-- Nav -->
+  <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-slate-100 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2.5"><img src="../favicon.png" alt="FastGEO" width="34" height="34" class="rounded-lg"><span class="text-2xl font-extrabold tracking-tight"><span class="text-indigo-950">Fast</span><span class="text-teal-600">GEO</span></span></a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="../index.html" class="text-slate-600 hover:text-indigo-900 font-medium">Home</a>
+        <a href="../services.html" class="text-slate-600 hover:text-indigo-900 font-medium">Services</a>
+        <a href="../pricing.html" class="text-slate-600 hover:text-indigo-900 font-medium">Pricing</a>
+        <a href="index.html" class="text-indigo-900 font-semibold">Blog</a>
+        <a href="../contact.html" class="text-slate-600 hover:text-indigo-900 font-medium">Contact</a>
+      </div>
+      <a href="../check.html" class="hidden md:inline-block gradient-btn px-6 py-2.5 rounded-full">Free AI Check</a>
+      <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-2">
+      <a href="../index.html" class="block py-2 text-slate-600 font-medium">Home</a>
+      <a href="../services.html" class="block py-2 text-slate-600 font-medium">Services</a>
+      <a href="../pricing.html" class="block py-2 text-slate-600 font-medium">Pricing</a>
+      <a href="index.html" class="block py-2 text-indigo-900 font-semibold">Blog</a>
+      <a href="../contact.html" class="block py-2 text-slate-600 font-medium">Contact</a>
+      <a href="../check.html" class="block gradient-btn text-center px-6 py-2.5 rounded-full">Free AI Check</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="gradient-hero pt-32 pb-16 md:pt-40 md:pb-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <a href="index.html" class="text-teal-300 text-sm font-semibold hover:text-teal-200">&larr; Back to Blog</a>
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-4 mb-4 leading-tight">What Happens When Someone Asks AI to Recommend a Business Like Yours</h1>
+      <div class="flex items-center gap-4 text-indigo-200 text-sm">
+        <span>By Dan, Founder of FastGEO</span>
+        <span>&middot;</span>
+        <span>May 2026</span>
+        <span>&middot;</span>
+        <span>5 min read</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article -->
+  <article class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 prose">
+
+      <p class="text-lg text-slate-700 leading-relaxed">
+        When someone types "recommend a plumber in Leeds" into ChatGPT, the AI doesn't open Google. It doesn't check a directory. It searches through everything it already knows about plumbers in Leeds and picks the ones it's most confident about.
+      </p>
+
+      <p class="text-lg text-slate-700 leading-relaxed">
+        Within a few seconds, it gives back one, two, maybe three names. With reasons why. The person reading that answer treats it like a recommendation from a trusted friend. They click through, they call, they book.
+      </p>
+
+      <p class="text-lg text-slate-700 leading-relaxed">
+        If your business isn't one of those names, you've just lost a customer you never even knew existed. And this is happening thousands of times a day across every trade and every town in the country.
+      </p>
+
+      <h2 class="text-2xl font-bold text-indigo-950">What the customer sees</h2>
+
+      <p class="text-slate-700 leading-relaxed">
+        From their side, it feels effortless.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        They open ChatGPT, Perplexity, or Google's AI Overview. They type something like "who's the best electrician near me" or "can you recommend a good accountant in Manchester." No scrolling through ads. No comparing ten different websites.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        The AI comes back with a short, confident answer. It names a business, explains what they do, and often mentions their reviews or reputation. The customer clicks the link and they're already halfway to buying.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        This is why <strong>64% of consumers now use AI tools to discover local brands and services</strong>. It's faster and feels more personal than a Google search. People trust it because it feels like advice rather than advertising.
+      </p>
+
+      <h2 class="text-2xl font-bold text-indigo-950">What's actually happening behind the scenes</h2>
+
+      <p class="text-slate-700 leading-relaxed">
+        Here's where it gets interesting.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        AI tools like ChatGPT are trained on billions of web pages. News articles, blog posts, review sites, directories, forums, press releases, trade publications. All of it gets absorbed into the model's understanding of the world.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        When someone asks for a recommendation, the AI doesn't search the internet in real time (though some tools like Perplexity do). It pulls from what it already knows. It looks for businesses it has seen mentioned repeatedly across trusted, independent sources.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        The key word there is independent. <strong>68% of AI citations come from third party sources</strong>, not from the business's own website. That means your "About Us" page matters far less than what Trustpilot, Checkatrade, local news sites, and trade directories say about you. If you want to understand more about where AI pulls its information, we've covered that in detail in our post on <a href="what-information-do-ai-tools-use-to-recommend-a-business.html" class="text-teal-600 font-semibold hover:text-teal-700">what information AI tools use to recommend a business</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-indigo-950">Why some businesses show up and others don't</h2>
+
+      <p class="text-slate-700 leading-relaxed">
+        It's not random. It's not about who paid the most. It's about digital footprint.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        Think of it like reputation in the real world. If ten different people in your town all mention the same roofer when asked, you'd trust that recommendation. AI works the same way. The more places your business is mentioned consistently and positively, the more confident the AI becomes about recommending you.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        Businesses that don't show up usually have one thing in common. Their online presence is thin. Maybe they've got a website and a Facebook page, but that's it. No reviews on multiple platforms. No press coverage. No directory listings beyond the basics. The AI simply doesn't have enough evidence to feel confident recommending them.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        This is what we call <a href="what-is-geo-search.html" class="text-teal-600 font-semibold hover:text-teal-700">GEO search</a> visibility. It's a different game to traditional SEO, and it rewards different things.
+      </p>
+
+      <h2 class="text-2xl font-bold text-indigo-950">The three signals AI looks for</h2>
+
+      <p class="text-slate-700 leading-relaxed">
+        When an AI tool decides who to recommend, it's weighing up three main things.
+      </p>
+
+      <h3 class="text-xl font-bold text-indigo-950">1. Mentions across trusted sites</h3>
+
+      <p class="text-slate-700 leading-relaxed">
+        This is the biggest one. Are you mentioned on review platforms, news outlets, industry directories, and other websites that the AI considers authoritative? One mention on your own blog doesn't carry much weight. Twenty mentions across Trustpilot, Google Reviews, Checkatrade, a local newspaper, and a trade association absolutely do.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        Google reviews in particular play a surprisingly large role. We wrote a whole post on <a href="do-google-reviews-help-you-show-up-on-chatgpt.html" class="text-teal-600 font-semibold hover:text-teal-700">whether Google reviews help you show up on ChatGPT</a>. Short answer: yes, they really do.
+      </p>
+
+      <h3 class="text-xl font-bold text-indigo-950">2. Structured data on your website</h3>
+
+      <p class="text-slate-700 leading-relaxed">
+        AI tools send crawlers to read your website, just like Google does. If your site uses schema markup (a type of code that labels your business name, location, services, and reviews in a machine readable format), AI tools can extract that information instantly.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        Without schema markup, the AI has to guess what your site is about. With it, you're handing over a cheat sheet.
+      </p>
+
+      <h3 class="text-xl font-bold text-indigo-950">3. Consistent business information everywhere</h3>
+
+      <p class="text-slate-700 leading-relaxed">
+        If your business name is slightly different on Google versus Trustpilot versus your website, the AI might not connect them as the same business. Consistency matters. Same name, same address, same phone number, same description of what you do.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        It sounds basic, but a shocking number of businesses have mismatched information across their listings. Every mismatch makes the AI less certain, and less certain means less likely to recommend.
+      </p>
+
+      <h2 class="text-2xl font-bold text-indigo-950">What it feels like to be the business that gets recommended</h2>
+
+      <p class="text-slate-700 leading-relaxed">
+        When you're the one ChatGPT names, the leads feel different.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        These aren't people who found you on page three of Google and are comparing you against six competitors. They've been specifically told to use you by a tool they trust. They arrive at your website already warm. They're not shopping around. They're ready to book.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        Businesses that get cited by AI tools report <strong>4.4x higher conversion rates</strong> compared to traditional search traffic. That's not a small bump. That's a completely different type of lead.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        And it compounds. The more people who find you through AI, the more reviews you get, the more mentions you accumulate, and the more confidently AI recommends you next time. It's a flywheel. Once it starts spinning, it builds on itself.
+      </p>
+
+      <h2 class="text-2xl font-bold text-indigo-950">What you can do about it starting today</h2>
+
+      <p class="text-slate-700 leading-relaxed">
+        You don't need to hire an agency or spend thousands to get started. Here are four things you can do right now.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        First, test it yourself. Open ChatGPT and ask it to recommend a business like yours in your area. See what comes back. If you're not there, that tells you everything.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        Second, check your robots.txt file. Many websites accidentally block AI crawlers like GPTBot and ClaudeBot. If the AI can't read your site, it can't recommend you. This takes two minutes to check.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        Third, make sure your business information is identical across every listing. Google Business Profile, Trustpilot, Checkatrade, Yell, your website. Same name, same details, everywhere.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        Fourth, start actively asking happy customers for reviews on multiple platforms. Not just Google. Spread them across Trustpilot, Facebook, and any industry specific review sites.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        For a full walkthrough, have a look at our guide on <a href="how-to-get-your-business-recommended-by-chatgpt.html" class="text-teal-600 font-semibold hover:text-teal-700">how to get your business recommended by ChatGPT</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold text-indigo-950">Find out where you stand</h2>
+
+      <p class="text-slate-700 leading-relaxed">
+        The fastest way to know whether AI tools are recommending you is to check. We built a free scanner that tests your business across the major AI platforms and shows you exactly what's happening.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        <a href="../check.html" class="text-teal-600 font-semibold hover:text-teal-700">Run your free AI visibility check here</a>. It takes 30 seconds and you'll see straight away whether you're showing up or missing out.
+      </p>
+
+      <p class="text-slate-700 leading-relaxed">
+        If the results aren't what you'd hoped, <a href="../contact.html" class="text-teal-600 font-semibold hover:text-teal-700">get in touch</a>. We'll walk you through what needs fixing and how to get AI working for you instead of against you.
+      </p>
+
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="bg-indigo-950 text-indigo-200 py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <div class="flex items-center gap-2.5 mb-4">
+            <img src="../favicon.png" alt="FastGEO" width="32" height="32" class="rounded-lg">
+            <span class="text-2xl font-extrabold tracking-tight"><span class="text-white">Fast</span><span class="text-teal-400">GEO</span></span>
+          </div>
+          <p class="text-sm leading-relaxed">The UK's first Generative Engine Optimization agency. We help businesses get found by AI search tools.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-4">Pages</h4>
+          <div class="space-y-2 text-sm">
+            <a href="../index.html" class="block hover:text-teal-400 transition">Home</a>
+            <a href="../services.html" class="block hover:text-teal-400 transition">Services</a>
+            <a href="../pricing.html" class="block hover:text-teal-400 transition">Pricing</a>
+            <a href="index.html" class="block hover:text-teal-400 transition">Blog</a>
+            <a href="../contact.html" class="block hover:text-teal-400 transition">Contact</a>
+            <a href="../check.html" class="block hover:text-teal-400 transition">Free AI Check</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-4">Contact</h4>
+          <div class="space-y-2 text-sm">
+            <p>dan@fastgeo.co.uk</p>
+            <p>fastgeo.co.uk</p>
+            <p>United Kingdom</p>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-indigo-800 mt-8 pt-8 text-sm text-center text-indigo-400">&copy; 2026 FastGEO. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
