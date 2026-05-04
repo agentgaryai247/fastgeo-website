@@ -180,17 +180,18 @@
 
     <!-- Score Card — StakScan style SVG ring -->
     <div id="score-card" class="bg-white rounded-2xl shadow-xl border border-slate-100 p-8 md:p-12 text-center mb-8 fade-in">
-      <div class="inline-block relative mb-6">
-        <svg width="180" height="180" viewBox="0 0 180 180" class="transform -rotate-90">
-          <circle cx="90" cy="90" r="76" fill="none" stroke="#E2E8F0" stroke-width="10"/>
-          <circle id="score-ring-svg" cx="90" cy="90" r="76" fill="none" stroke="#4338CA" stroke-width="10" stroke-linecap="round"
-            stroke-dasharray="477.52" stroke-dashoffset="477.52" style="transition: stroke-dashoffset 2s cubic-bezier(0.33, 1, 0.68, 1)"/>
+      <div class="inline-block relative mb-4">
+        <svg width="200" height="200" viewBox="0 0 200 200" class="transform -rotate-90">
+          <circle cx="100" cy="100" r="85" fill="none" stroke="#E2E8F0" stroke-width="10"/>
+          <circle id="score-ring-svg" cx="100" cy="100" r="85" fill="none" stroke="#4338CA" stroke-width="10" stroke-linecap="round"
+            stroke-dasharray="534.07" stroke-dashoffset="534.07" style="transition: stroke-dashoffset 2s cubic-bezier(0.33, 1, 0.68, 1)"/>
         </svg>
-        <div class="absolute inset-0 flex items-center justify-center">
-          <span id="score-number" class="text-5xl font-extrabold font-mono text-indigo-950">0</span><span class="text-lg font-semibold text-slate-400 ml-0.5 self-end mb-2">/100</span>
+        <div class="absolute inset-0 flex flex-col items-center justify-center">
+          <span id="score-number" class="text-7xl font-extrabold font-mono text-indigo-950 leading-none">0</span>
+          <span class="text-base font-semibold text-slate-400 mt-1">/100</span>
         </div>
       </div>
-      <div id="verdict-badge" class="inline-block px-4 py-1.5 rounded-full text-sm font-bold mb-3"></div>
+      <div id="verdict-badge" class="inline-block px-5 py-2 rounded-full text-sm font-bold mb-3"></div>
       <h2 id="verdict-title" class="text-2xl md:text-3xl font-extrabold mb-3"></h2>
       <p id="verdict-subtitle" class="text-lg text-slate-600 max-w-lg mx-auto leading-relaxed"></p>
     </div>
@@ -405,7 +406,7 @@ function showResults(data) {
 
   // Animate SVG ring
   ringSvg.style.stroke = ringColor;
-  const circumference = 2 * Math.PI * 76; // 477.52
+  const circumference = 2 * Math.PI * 85; // 534.07
   const targetOffset = circumference * (1 - data.score / 100);
   setTimeout(() => { ringSvg.style.strokeDashoffset = targetOffset; }, 100);
 
