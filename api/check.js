@@ -172,7 +172,20 @@ module.exports = async function handler(req, res) {
             const robotsTxt = await robotsResp.text();
             const robotsLower = robotsTxt.toLowerCase();
             const aiCrawlers = ['gptbot', 'claudebot', 'perplexitybot', 'chatgpt-user', 'anthropic-ai'];
-            const blocked = aiCrawlers.some(bot => robotsLower.includes(bot));
+            // Parse robots.txt properly — only flag as blocked if Disallow: / is set
+            const lines = robotsLower.split('\n');
+            let currentAgent = '';
+            let blocked = false;
+            for (const line of lines) {
+              const trimmed = line.trim();
+              if (trimmed.startsWith('user-agent:')) {
+                currentAgent = trimmed.replace('user-agent:', '').trim();
+              } else if (trimmed.startsWith('disallow:') && trimmed.replace('disallow:', '').trim() === '/') {
+                if (currentAgent === '*' || aiCrawlers.some(bot => currentAgent.includes(bot))) {
+                  blocked = true;
+                }
+              }
+            }
 
             if (!blocked) {
               geoScore += 5;
