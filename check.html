@@ -180,20 +180,21 @@
 
     <!-- Score Card — StakScan style SVG ring -->
     <div id="score-card" class="bg-white rounded-2xl shadow-xl border border-slate-100 p-8 md:p-12 text-center mb-8 fade-in">
-      <div class="inline-block relative mb-4">
-        <svg width="200" height="200" viewBox="0 0 200 200" class="transform -rotate-90">
-          <circle cx="100" cy="100" r="85" fill="none" stroke="#E2E8F0" stroke-width="10"/>
-          <circle id="score-ring-svg" cx="100" cy="100" r="85" fill="none" stroke="#4338CA" stroke-width="10" stroke-linecap="round"
-            stroke-dasharray="534.07" stroke-dashoffset="534.07" style="transition: stroke-dashoffset 2s cubic-bezier(0.33, 1, 0.68, 1)"/>
-        </svg>
-        <div class="absolute inset-0 flex flex-col items-center justify-center">
-          <span id="score-number" class="text-7xl font-extrabold font-mono text-indigo-950 leading-none">0</span>
-          <span class="text-base font-semibold text-slate-400 mt-1">/100</span>
+      <div id="score-ring" class="inline-flex items-center justify-center w-40 h-40 rounded-full border-[10px] mb-5 score-pulse">
+        <div class="flex items-baseline">
+          <span id="score-number" class="text-6xl font-extrabold font-mono"></span>
+          <span id="score-suffix" class="text-xl font-bold ml-0.5 opacity-50">/100</span>
         </div>
       </div>
       <div id="verdict-badge" class="inline-block px-5 py-2 rounded-full text-sm font-bold mb-3"></div>
       <h2 id="verdict-title" class="text-2xl md:text-3xl font-extrabold mb-3"></h2>
       <p id="verdict-subtitle" class="text-lg text-slate-600 max-w-lg mx-auto leading-relaxed"></p>
+    </div>
+
+    <!-- Category Breakdown -->
+    <div id="categories-container" class="bg-white rounded-2xl shadow-xl border border-slate-100 p-8 md:p-10 mb-8 fade-in">
+      <h3 class="text-xl font-bold text-indigo-950 mb-6">Score Breakdown</h3>
+      <div id="category-bars" class="space-y-5"></div>
     </div>
 
     <!-- Quick Win -->
@@ -387,28 +388,28 @@ function showResults(data) {
   document.getElementById('results-section').classList.remove('hidden');
 
   const scoreNum = document.getElementById('score-number');
-  const ringSvg = document.getElementById('score-ring-svg');
+  const scoreSuffix = document.getElementById('score-suffix');
+  const ring = document.getElementById('score-ring');
   const verdictBadge = document.getElementById('verdict-badge');
   const verdictTitle = document.getElementById('verdict-title');
   const verdictSub = document.getElementById('verdict-subtitle');
 
   // Score band config
-  let band, ringColor, badgeBg, badgeText, titleColor;
+  let band, ringBorder, ringBg, scoreColor, suffixColor, badgeBg, badgeText, titleColor;
   if (data.score <= 25) {
-    band = 'Needs Work'; ringColor = '#EF4444'; badgeBg = 'bg-red-100'; badgeText = 'text-red-700'; titleColor = 'text-red-700';
+    band = 'Needs Work'; ringBorder = 'border-red-400'; ringBg = 'bg-red-50'; scoreColor = 'text-red-600'; suffixColor = 'text-red-300'; badgeBg = 'bg-red-100'; badgeText = 'text-red-700'; titleColor = 'text-red-700';
   } else if (data.score <= 50) {
-    band = 'Getting There'; ringColor = '#F59E0B'; badgeBg = 'bg-amber-100'; badgeText = 'text-amber-700'; titleColor = 'text-amber-700';
+    band = 'Getting There'; ringBorder = 'border-amber-400'; ringBg = 'bg-amber-50'; scoreColor = 'text-amber-600'; suffixColor = 'text-amber-300'; badgeBg = 'bg-amber-100'; badgeText = 'text-amber-700'; titleColor = 'text-amber-700';
   } else if (data.score <= 75) {
-    band = 'Looking Good'; ringColor = '#3B82F6'; badgeBg = 'bg-blue-100'; badgeText = 'text-blue-700'; titleColor = 'text-blue-700';
+    band = 'Looking Good'; ringBorder = 'border-blue-400'; ringBg = 'bg-blue-50'; scoreColor = 'text-blue-600'; suffixColor = 'text-blue-300'; badgeBg = 'bg-blue-100'; badgeText = 'text-blue-700'; titleColor = 'text-blue-700';
   } else {
-    band = 'Strong Foundation'; ringColor = '#22C55E'; badgeBg = 'bg-green-100'; badgeText = 'text-green-700'; titleColor = 'text-green-700';
+    band = 'Strong Foundation'; ringBorder = 'border-green-400'; ringBg = 'bg-green-50'; scoreColor = 'text-green-600'; suffixColor = 'text-green-300'; badgeBg = 'bg-green-100'; badgeText = 'text-green-700'; titleColor = 'text-green-700';
   }
 
-  // Animate SVG ring
-  ringSvg.style.stroke = ringColor;
-  const circumference = 2 * Math.PI * 85; // 534.07
-  const targetOffset = circumference * (1 - data.score / 100);
-  setTimeout(() => { ringSvg.style.strokeDashoffset = targetOffset; }, 100);
+  // Style ring
+  ring.className = `inline-flex items-center justify-center w-40 h-40 rounded-full border-[10px] mb-5 score-pulse ${ringBorder} ${ringBg}`;
+  scoreNum.className = `text-6xl font-extrabold font-mono ${scoreColor}`;
+  scoreSuffix.className = `text-xl font-bold ml-0.5 ${suffixColor}`;
 
   // Animate score counter
   const duration = 2000;
@@ -425,10 +426,46 @@ function showResults(data) {
 
   // Badge + title
   verdictBadge.textContent = band;
-  verdictBadge.className = `inline-block px-4 py-1.5 rounded-full text-sm font-bold mb-3 ${badgeBg} ${badgeText}`;
+  verdictBadge.className = `inline-block px-5 py-2 rounded-full text-sm font-bold mb-3 ${badgeBg} ${badgeText}`;
   verdictTitle.textContent = data.businessName;
   verdictTitle.className = `text-2xl md:text-3xl font-extrabold mb-3 ${titleColor}`;
   verdictSub.textContent = data.summary;
+
+  // Category bars
+  const barsContainer = document.getElementById('category-bars');
+  barsContainer.innerHTML = '';
+
+  const barColors = {
+    red: { bg: 'bg-red-100', fill: 'bg-red-500', text: 'text-red-700' },
+    amber: { bg: 'bg-amber-100', fill: 'bg-amber-500', text: 'text-amber-700' },
+    blue: { bg: 'bg-blue-100', fill: 'bg-blue-500', text: 'text-blue-700' },
+    green: { bg: 'bg-green-100', fill: 'bg-green-500', text: 'text-green-700' }
+  };
+
+  data.categories.forEach((cat, i) => {
+    const pct = Math.round((cat.score / cat.max) * 100);
+    const color = pct <= 25 ? 'red' : pct <= 50 ? 'amber' : pct <= 75 ? 'blue' : 'green';
+    const c = barColors[color];
+
+    const bar = document.createElement('div');
+    bar.className = 'fade-in';
+    bar.style.animationDelay = `${i * 0.1}s`;
+    bar.innerHTML = `
+      <div class="flex justify-between items-baseline mb-1.5">
+        <span class="text-sm font-semibold text-indigo-950">${cat.name}</span>
+        <span class="text-sm font-bold ${c.text}">${cat.score}/${cat.max}</span>
+      </div>
+      <div class="w-full h-3 ${c.bg} rounded-full overflow-hidden">
+        <div class="h-full ${c.fill} rounded-full score-bar-fill" style="width: 0%"></div>
+      </div>
+      <p class="text-xs text-slate-500 mt-1">${cat.note}</p>
+    `;
+    barsContainer.appendChild(bar);
+
+    setTimeout(() => {
+      bar.querySelector('.score-bar-fill').style.width = pct + '%';
+    }, 200 + i * 150);
+  });
 
   // Quick win
   document.getElementById('quickwin-text').textContent = data.quickWin;
