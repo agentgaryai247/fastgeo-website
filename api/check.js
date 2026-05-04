@@ -109,48 +109,106 @@ module.exports = async function handler(req, res) {
 
         // ── GEO READINESS (out of 25) ──
 
-        // Schema/structured data
+        // Schema/structured data (4pts)
         const hasSchema = htmlLower.includes('application/ld+json') || htmlLower.includes('itemtype=');
         if (hasSchema) {
-          geoScore += 8;
+          geoScore += 4;
           findings.push({ label: 'Schema Markup', detail: 'Structured data found. This helps AI tools understand your business details.', status: 'pass' });
         } else {
           findings.push({ label: 'Schema Markup', detail: 'No structured data (schema markup) found. This is one of the biggest GEO signals — AI tools rely on it to know what your business does.', status: 'fail' });
         }
 
-        // NAP (Name, Address, Phone)
+        // NAP — Name, Address, Phone (4pts)
         const hasPhone = /(\d{5}\s?\d{6}|\d{4}\s?\d{3}\s?\d{4}|0\d{2,4}\s?\d{3,4}\s?\d{3,4}|\+44)/i.test(html);
         const hasAddress = /[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}/i.test(html); // UK postcode pattern
         if (hasPhone && hasAddress) {
-          geoScore += 7;
+          geoScore += 4;
           findings.push({ label: 'Contact Details (NAP)', detail: 'Phone number and address found on the page. AI tools use these to verify and recommend local businesses.', status: 'pass' });
         } else if (hasPhone || hasAddress) {
-          geoScore += 4;
+          geoScore += 2;
           findings.push({ label: 'Contact Details (NAP)', detail: hasPhone ? 'Phone found but no visible address/postcode.' : 'Address found but no visible phone number.', status: 'warning' });
         } else {
           findings.push({ label: 'Contact Details (NAP)', detail: 'No phone number or address found on the page. AI tools need these to recommend local businesses.', status: 'fail' });
         }
 
-        // Business name prominence
+        // Business name prominence (3pts)
         const businessLower = businessName.toLowerCase();
         const businessMentions = (htmlLower.split(businessLower).length - 1);
         if (businessMentions >= 3) {
-          geoScore += 5;
+          geoScore += 3;
           findings.push({ label: 'Business Name Visibility', detail: 'Your business name appears ' + businessMentions + ' times on the page.', status: 'pass' });
         } else if (businessMentions >= 1) {
-          geoScore += 3;
+          geoScore += 2;
           findings.push({ label: 'Business Name Visibility', detail: 'Your business name only appears ' + businessMentions + ' time(s). More mentions help AI tools associate your name with your services.', status: 'warning' });
         } else {
           findings.push({ label: 'Business Name Visibility', detail: 'Your business name doesn\'t appear on the page. AI tools can\'t recommend what they can\'t identify.', status: 'fail' });
         }
 
-        // Trade/service mentions
+        // Trade/service mentions (2pts)
         const tradeLower = trade.toLowerCase();
         const tradeMentions = (htmlLower.split(tradeLower).length - 1);
         if (tradeMentions >= 3) {
-          geoScore += 5;
-        } else if (tradeMentions >= 1) {
           geoScore += 2;
+        } else if (tradeMentions >= 1) {
+          geoScore += 1;
+        }
+
+        // Robots.txt AI crawler check (5pts)
+        try {
+          const siteUrl = website.startsWith('http') ? website : 'https://' + website;
+          const urlObj = new URL(siteUrl);
+          const robotsUrl = urlObj.origin + '/robots.txt';
+          const robotsController = new AbortController();
+          const robotsTimeout = setTimeout(() => robotsController.abort(), 5000);
+
+          const robotsResp = await fetch(robotsUrl, {
+            headers: { 'User-Agent': 'FastGEO-Scanner/1.0' },
+            signal: robotsController.signal,
+            redirect: 'follow'
+          });
+          clearTimeout(robotsTimeout);
+
+          if (robotsResp.ok) {
+            const robotsTxt = await robotsResp.text();
+            const robotsLower = robotsTxt.toLowerCase();
+            const aiCrawlers = ['gptbot', 'claudebot', 'perplexitybot', 'chatgpt-user', 'anthropic-ai'];
+            const blocked = aiCrawlers.some(bot => robotsLower.includes(bot));
+
+            if (!blocked) {
+              geoScore += 5;
+              findings.push({ label: 'AI Crawlers Allowed', detail: 'Your robots.txt allows AI tools to read your website.', status: 'pass' });
+            } else {
+              findings.push({ label: 'AI Crawlers Blocked', detail: 'Your robots.txt is blocking AI tools like GPTBot and ClaudeBot from reading your site. This means they literally cannot find or recommend you.', status: 'fail' });
+            }
+          } else {
+            geoScore += 3;
+            findings.push({ label: 'Robots.txt Check', detail: 'Could not check robots.txt. Make sure AI crawlers aren\'t blocked.', status: 'warning' });
+          }
+        } catch (e) {
+          geoScore += 3;
+          findings.push({ label: 'Robots.txt Check', detail: 'Could not check robots.txt. Make sure AI crawlers aren\'t blocked.', status: 'warning' });
+        }
+
+        // Third party / external signals check (7pts)
+        const externalPlatforms = [
+          'trustpilot', 'checkatrade', 'mybuilder', 'bark',
+          'google.com/maps', 'google.com/business', 'yell.com',
+          'facebook.com', 'linkedin.com', 'yelp', 'freeindex'
+        ];
+        const foundPlatforms = externalPlatforms.filter(p => htmlLower.includes(p));
+        const platformCount = foundPlatforms.length;
+
+        if (platformCount >= 4) {
+          geoScore += 7;
+          findings.push({ label: 'External Presence', detail: 'Strong external presence — linked to ' + platformCount + ' directory/review platforms.', status: 'pass' });
+        } else if (platformCount >= 2) {
+          geoScore += 4;
+          findings.push({ label: 'External Presence', detail: 'Some external links found (' + platformCount + ' platforms). More directory listings = more third party signals for AI.', status: 'warning' });
+        } else if (platformCount === 1) {
+          geoScore += 2;
+          findings.push({ label: 'External Presence', detail: 'Only 1 external platform link found. More directory listings = more third party signals for AI.', status: 'warning' });
+        } else {
+          findings.push({ label: 'External Presence', detail: 'No links to directories, review sites, or business profiles found. 68% of AI citations come from third party sources — this is your biggest gap.', status: 'fail' });
         }
 
         // ── CONTENT QUALITY (out of 25) ──
