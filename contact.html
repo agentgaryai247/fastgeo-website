@@ -78,26 +78,26 @@
         <!-- Contact Form -->
         <div>
           <h2 class="text-2xl font-bold text-indigo-950 mb-6">Send Us a Message</h2>
-          <form class="space-y-5" onsubmit="event.preventDefault(); document.getElementById('form-success').classList.remove('hidden'); this.classList.add('hidden');">
+          <form id="contact-form" class="space-y-5" action="https://formspree.io/f/xwvybkdq" method="POST">
             <div>
               <label class="block text-sm font-medium text-slate-700 mb-1.5">Your Name</label>
-              <input type="text" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none transition text-slate-800" placeholder="e.g. Sarah Johnson">
+              <input type="text" name="name" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none transition text-slate-800" placeholder="e.g. Sarah Johnson">
             </div>
             <div>
               <label class="block text-sm font-medium text-slate-700 mb-1.5">Email Address</label>
-              <input type="email" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none transition text-slate-800" placeholder="sarah@yourbusiness.co.uk">
+              <input type="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none transition text-slate-800" placeholder="sarah@yourbusiness.co.uk">
             </div>
             <div>
               <label class="block text-sm font-medium text-slate-700 mb-1.5">Business Name</label>
-              <input type="text" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none transition text-slate-800" placeholder="e.g. Johnson Plumbing Ltd">
+              <input type="text" name="business" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none transition text-slate-800" placeholder="e.g. Johnson Plumbing Ltd">
             </div>
             <div>
               <label class="block text-sm font-medium text-slate-700 mb-1.5">Website URL (if you have one)</label>
-              <input type="url" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none transition text-slate-800" placeholder="https://yourbusiness.co.uk">
+              <input type="url" name="website" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none transition text-slate-800" placeholder="https://yourbusiness.co.uk">
             </div>
             <div>
               <label class="block text-sm font-medium text-slate-700 mb-1.5">What Are You Interested In?</label>
-              <select class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none transition text-slate-800 bg-white">
+              <select name="interest" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none transition text-slate-800 bg-white">
                 <option value="">Select an option</option>
                 <option value="starter">GEO Starter (£150)</option>
                 <option value="kickstart">GEO Kickstart (£397)</option>
@@ -108,7 +108,7 @@
             </div>
             <div>
               <label class="block text-sm font-medium text-slate-700 mb-1.5">Your Message</label>
-              <textarea rows="4" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none transition text-slate-800 resize-none" placeholder="Tell us a bit about your business and what you're looking for..."></textarea>
+              <textarea rows="4" name="message" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none transition text-slate-800 resize-none" placeholder="Tell us a bit about your business and what you're looking for..."></textarea>
             </div>
             <button type="submit" class="w-full gradient-btn py-3.5 rounded-full transition shadow-lg text-lg">
               Send Message
@@ -228,6 +228,28 @@
     </div>
   </footer>
 
+  <script>
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          form.classList.add('hidden');
+          document.getElementById('form-success').classList.remove('hidden');
+        } else {
+          btn.textContent = 'Something went wrong — try again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Something went wrong — try again';
+        btn.disabled = false;
+      }
+    });
+  </script>
   <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
