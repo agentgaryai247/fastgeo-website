@@ -355,7 +355,8 @@ function rotateLoadingMessage() {
 document.getElementById('check-form').addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const businessName = document.getElementById('businessName').value.trim();
+  const rawName = document.getElementById('businessName').value.trim();
+  const businessName = rawName.replace(/\w\S*/g, w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
   const trade = document.getElementById('trade').value.trim();
   const city = document.getElementById('city').value.trim();
   const website = document.getElementById('website').value.trim();

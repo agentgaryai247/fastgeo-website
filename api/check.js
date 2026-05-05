@@ -348,14 +348,16 @@ module.exports = async function handler(req, res) {
       try {
         const topIssues = findings.filter(f => f.status === 'fail').slice(0, 3).map(f => f.label + ': ' + f.detail).join('\n');
 
-        const prompt = `You are a GEO (Generative Engine Optimization) expert. A ${trade} business called "${businessName}" in ${city} just scored ${totalScore}/100 on their AI & SEO readiness check.${hasWebsite ? '' : ' They don\'t have a website yet.'}
+        const scoreBand = totalScore >= 75 ? 'strong' : totalScore >= 50 ? 'decent with room to improve' : totalScore >= 25 ? 'below average' : 'very low';
+
+        const prompt = `You are a GEO (Generative Engine Optimization) expert. A ${trade} business called "${businessName}" in ${city} just scored ${totalScore}/100 on their AI & SEO readiness check. That score is ${scoreBand}.${hasWebsite ? '' : ' They don\'t have a website yet.'}
 
 Their biggest issues:
 ${topIssues || 'No major issues found.'}
 
 Write two things:
 1. QUICK_WIN: One specific, actionable thing they can do TODAY to improve their score. Be concrete and specific to their trade. Max 2 sentences.
-2. SUMMARY: A one-sentence summary of their overall AI & SEO readiness. Be direct and honest but encouraging.
+2. SUMMARY: A one-sentence summary that matches their score. ${totalScore >= 75 ? 'They are doing well — acknowledge that but mention what would push them further.' : totalScore >= 50 ? 'They have a decent foundation — be encouraging but highlight the gap.' : 'They have significant gaps — be honest but not discouraging.'} Never say they are "invisible" or "not showing up" if their score is above 50.
 
 Format your response exactly like:
 QUICK_WIN: [your quick win here]
